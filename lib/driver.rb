@@ -14,4 +14,6 @@ class Driver
   def dispense_condensed_soup; end
   def dispense_croutons; end
   def dispense_hot_sauce; end
+  def dispense_cider_mix; end
+  def dispense_cinnamon; end
 end
