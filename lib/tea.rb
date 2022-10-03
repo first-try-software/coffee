@@ -1,11 +1,6 @@
-class Tea
-  attr_reader :driver, :options
+require_relative "beverage"
 
-  def initialize(driver, options)
-    @driver = driver
-    @options = options
-  end
-
+class Tea < Beverage
   def prepare
     dispense_cup
     heat_water
@@ -17,20 +12,8 @@ class Tea
 
   private
 
-  def dispense_cup
-    driver.dispense_cup
-  end
-
-  def heat_water
-    driver.heat_water
-  end
-
   def dispense_tea_bag
     driver.dispense_tea_bag
-  end
-
-  def dispense_water
-    driver.dispense_water
   end
 
   def dispense_sweetener

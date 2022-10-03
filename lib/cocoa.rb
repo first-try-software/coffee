@@ -1,11 +1,6 @@
-class Cocoa
-  attr_reader :driver, :options
+require_relative "beverage"
 
-  def initialize(driver, options)
-    @driver = driver
-    @options = options
-  end
-
+class Cocoa < Beverage
   def prepare
     dispense_cup
     heat_water
@@ -16,20 +11,8 @@ class Cocoa
 
   private
 
-  def dispense_cup
-    driver.dispense_cup
-  end
-
-  def heat_water
-    driver.heat_water
-  end
-
   def dispense_cocoa_mix
     driver.dispense_cocoa_mix
-  end
-
-  def dispense_water
-    driver.dispense_water
   end
 
   def dispense_whipped_cream
