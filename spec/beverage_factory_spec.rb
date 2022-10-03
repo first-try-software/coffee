@@ -23,6 +23,10 @@ RSpec.describe BeverageFactory do
       expect(described_class.build(:soup, driver, options))
         .to be_an_instance_of(Soup)
         .and(have_attributes(driver: driver, options: options))
+
+      expect(described_class.build(:cider, driver, options))
+        .to be_an_instance_of(Cider)
+        .and(have_attributes(driver: driver, options: options))
     end
 
     it "returns a null object when the requested beverage is not supported" do
