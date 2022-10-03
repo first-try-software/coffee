@@ -7,63 +7,39 @@ RSpec.describe CoffeeMachine do
 
   describe "#vend" do
     it "serves hot water if an unknown beverage is requested" do
-      allow(driver).to receive(:dispense_cup)
-      allow(driver).to receive(:heat_water)
-      allow(driver).to receive(:dispense_water)
+      beverage = instance_double("beverage")
+
+      allow(BeverageFactory).to receive(:build).and_return(beverage)
+      allow(beverage).to receive(:prepare)
 
       machine.vend(drink: :unknown)
 
-      expect(driver).to have_received(:dispense_cup).ordered
-      expect(driver).to have_received(:heat_water).ordered
-      expect(driver).to have_received(:dispense_water).ordered
+      expect(BeverageFactory).to have_received(:build).with(:unknown, driver, {})
+      expect(beverage).to have_received(:prepare)
     end
 
-    it "serves coffee by default" do
-      coffee = instance_double(Coffee)
+    it "serves plain coffee by default" do
+      beverage = instance_double("beverage")
 
-      allow(Coffee).to receive(:new).and_return(coffee)
-      allow(coffee).to receive(:prepare)
+      allow(BeverageFactory).to receive(:build).and_return(beverage)
+      allow(beverage).to receive(:prepare)
 
       machine.vend
 
-      expect(Coffee).to have_received(:new).with(driver, {})
-      expect(coffee).to have_received(:prepare)
+      expect(BeverageFactory).to have_received(:build).with(:coffee, driver, {})
+      expect(beverage).to have_received(:prepare)
     end
 
-    it "serves coffee with the provided options when coffee is requested" do
-      coffee = instance_double(Coffee)
+    it "serves the requested beverage with the provided options" do
+      beverage = instance_double("beverage")
 
-      allow(Coffee).to receive(:new).and_return(coffee)
-      allow(coffee).to receive(:prepare)
-
-      machine.vend(drink: :coffee, options: { sweet: true, creamy: true, fluffy: true })
-
-      expect(Coffee).to have_received(:new).with(driver, { sweet: true, creamy: true, fluffy: true })
-      expect(coffee).to have_received(:prepare)
-    end
-
-    it "serves tea with the provided options when tea is requested" do
-      tea = instance_double(Tea)
-
-      allow(Tea).to receive(:new).and_return(tea)
-      allow(tea).to receive(:prepare)
-
-      machine.vend(drink: :tea, options: { sweet: true, creamy: true })
-
-      expect(Tea).to have_received(:new).with(driver, { sweet: true, creamy: true })
-      expect(tea).to have_received(:prepare)
-    end
-
-    it "serves cocoa when cocoa is requested" do
-      cocoa = instance_double(Cocoa)
-
-      allow(Cocoa).to receive(:new).and_return(cocoa)
-      allow(cocoa).to receive(:prepare)
+      allow(BeverageFactory).to receive(:build).and_return(beverage)
+      allow(beverage).to receive(:prepare)
 
       machine.vend(drink: :cocoa, options: { fluffy: true })
 
-      expect(Cocoa).to have_received(:new).with(driver, { fluffy: true })
-      expect(cocoa).to have_received(:prepare)
+      expect(BeverageFactory).to have_received(:build).with(:cocoa, driver, { fluffy: true })
+      expect(beverage).to have_received(:prepare)
     end
   end
 end
