@@ -1,4 +1,5 @@
 require_relative "../lib/beverage_factory"
+require_relative "../lib/driver"
 
 RSpec.describe BeverageFactory do
   let(:driver) { Driver.new }
@@ -17,6 +18,10 @@ RSpec.describe BeverageFactory do
 
       expect(described_class.build(:cocoa, driver, options))
         .to be_an_instance_of(Cocoa)
+        .and(have_attributes(driver: driver, options: options))
+
+      expect(described_class.build(:tomato_soup, driver, options))
+        .to be_an_instance_of(TomatoSoup)
         .and(have_attributes(driver: driver, options: options))
     end
 
