@@ -9,4 +9,5 @@ class Driver
   def dispose_of_grounds; end
   def dispense_sweetener; end
   def dispense_cream; end
+  def dispense_cocoa_mix; end
 end

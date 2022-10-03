@@ -15,12 +15,16 @@ class CoffeeMachine
       prepare_grounds
     elsif drink == :tea
       dispense_tea_bag
+    elsif drink == :cocoa
+      dispense_cocoa_mix
     end
 
     dispense_water
 
-    dispense_sweetener if options[:sweet]
-    dispense_cream if options[:creamy]
+    unless drink == :cocoa
+      dispense_sweetener if options[:sweet]
+      dispense_cream if options[:creamy]
+    end
 
     dispose_of_grounds if drink == :coffee
   end
@@ -57,5 +61,9 @@ class CoffeeMachine
 
   def dispense_cream
     driver.dispense_cream
+  end
+
+  def dispense_cocoa_mix
+    driver.dispense_cocoa_mix
   end
 end
