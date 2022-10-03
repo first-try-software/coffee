@@ -11,4 +11,7 @@ class Driver
   def dispense_cream; end
   def dispense_cocoa_mix; end
   def dispense_whipped_cream; end
+  def dispense_condensed_soup; end
+  def dispense_croutons; end
+  def dispense_hot_sauce; end
 end
