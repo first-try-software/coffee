@@ -151,5 +151,55 @@ RSpec.describe CoffeeMachine do
       expect(driver).not_to have_received(:dispense_sweetener)
       expect(driver).not_to have_received(:dispense_cream)
     end
+
+    it "adds whipped cream to coffee when requested" do
+      allow(driver).to receive(:dispense_cup)
+      allow(driver).to receive(:heat_water)
+      allow(driver).to receive(:prepare_grounds)
+      allow(driver).to receive(:dispense_water)
+      allow(driver).to receive(:dispense_whipped_cream)
+      allow(driver).to receive(:dispose_of_grounds)
+
+      machine.vend(drink: :coffee, options: { fluffy: true })
+
+      expect(driver).to have_received(:dispense_cup).ordered
+      expect(driver).to have_received(:heat_water).ordered
+      expect(driver).to have_received(:prepare_grounds).ordered
+      expect(driver).to have_received(:dispense_water).ordered
+      expect(driver).to have_received(:dispense_whipped_cream).ordered
+      expect(driver).to have_received(:dispose_of_grounds).ordered
+    end
+
+    it "adds whipped cream to cocoa when requested" do
+      allow(driver).to receive(:dispense_cup)
+      allow(driver).to receive(:heat_water)
+      allow(driver).to receive(:dispense_cocoa_mix)
+      allow(driver).to receive(:dispense_water)
+      allow(driver).to receive(:dispense_whipped_cream)
+
+      machine.vend(drink: :cocoa, options: { fluffy: true })
+
+      expect(driver).to have_received(:dispense_cup).ordered
+      expect(driver).to have_received(:heat_water).ordered
+      expect(driver).to have_received(:dispense_cocoa_mix).ordered
+      expect(driver).to have_received(:dispense_water).ordered
+      expect(driver).to have_received(:dispense_whipped_cream).ordered
+    end
+
+    it "does NOT add whipped cream when tea is requested" do
+      allow(driver).to receive(:dispense_cup)
+      allow(driver).to receive(:heat_water)
+      allow(driver).to receive(:dispense_tea_bag)
+      allow(driver).to receive(:dispense_water)
+      allow(driver).to receive(:dispense_whipped_cream)
+
+      machine.vend(drink: :tea, options: { fluffy: true })
+
+      expect(driver).to have_received(:dispense_cup).ordered
+      expect(driver).to have_received(:heat_water).ordered
+      expect(driver).to have_received(:dispense_tea_bag).ordered
+      expect(driver).to have_received(:dispense_water).ordered
+      expect(driver).not_to have_received(:dispense_whipped_cream)
+    end
   end
 end

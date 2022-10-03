@@ -10,4 +10,5 @@ class Driver
   def dispense_sweetener; end
   def dispense_cream; end
   def dispense_cocoa_mix; end
+  def dispense_whipped_cream; end
 end

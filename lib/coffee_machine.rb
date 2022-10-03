@@ -26,6 +26,10 @@ class CoffeeMachine
       dispense_cream if options[:creamy]
     end
 
+    unless drink == :tea
+      dispense_whipped_cream if options[:fluffy]
+    end
+
     dispose_of_grounds if drink == :coffee
   end
 
@@ -65,5 +69,9 @@ class CoffeeMachine
 
   def dispense_cocoa_mix
     driver.dispense_cocoa_mix
+  end
+
+  def dispense_whipped_cream
+    driver.dispense_whipped_cream
   end
 end
