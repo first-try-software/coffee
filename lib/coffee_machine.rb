@@ -1,7 +1,5 @@
 require_relative "driver"
-require_relative "coffee"
-require_relative "tea"
-require_relative "cocoa"
+require_relative "beverage_factory"
 
 class CoffeeMachine
   attr_reader :driver
@@ -11,12 +9,6 @@ class CoffeeMachine
   end
 
   def vend(drink: :coffee, options: {})
-    if drink == :coffee
-      Coffee.new(driver, options).prepare
-    elsif drink == :tea
-      Tea.new(driver, options).prepare
-    elsif drink == :cocoa
-      Cocoa.new(driver, options).prepare
-    end
+    BeverageFactory.build(drink, driver, options).prepare
   end
 end
