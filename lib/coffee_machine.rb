@@ -8,29 +8,29 @@ class CoffeeMachine
   end
 
   def vend(drink: :coffee, options: {})
-    dispense_cup
-    heat_water
-
     if drink == :coffee
+      dispense_cup
+      heat_water
       prepare_grounds
-    elsif drink == :tea
-      dispense_tea_bag
-    elsif drink == :cocoa
-      dispense_cocoa_mix
-    end
-
-    dispense_water
-
-    unless drink == :cocoa
+      dispense_water
       dispense_sweetener if options[:sweet]
       dispense_cream if options[:creamy]
-    end
-
-    unless drink == :tea
+      dispense_whipped_cream if options[:fluffy]
+      dispose_of_grounds
+    elsif drink == :tea
+      dispense_cup
+      heat_water
+      dispense_tea_bag
+      dispense_water
+      dispense_sweetener if options[:sweet]
+      dispense_cream if options[:creamy]
+    elsif drink == :cocoa
+      dispense_cup
+      heat_water
+      dispense_cocoa_mix
+      dispense_water
       dispense_whipped_cream if options[:fluffy]
     end
-
-    dispose_of_grounds if drink == :coffee
   end
 
   private
