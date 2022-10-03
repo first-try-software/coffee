@@ -1,4 +1,5 @@
 require_relative "driver"
+require_relative "coffee"
 
 class CoffeeMachine
   attr_reader :driver
@@ -9,14 +10,7 @@ class CoffeeMachine
 
   def vend(drink: :coffee, options: {})
     if drink == :coffee
-      dispense_cup
-      heat_water
-      prepare_grounds
-      dispense_water
-      dispense_sweetener if options[:sweet]
-      dispense_cream if options[:creamy]
-      dispense_whipped_cream if options[:fluffy]
-      dispose_of_grounds
+      Coffee.new(driver, options).prepare
     elsif drink == :tea
       dispense_cup
       heat_water
@@ -43,16 +37,8 @@ class CoffeeMachine
     driver.heat_water
   end
 
-  def prepare_grounds
-    driver.prepare_grounds
-  end
-
   def dispense_water
     driver.dispense_water
-  end
-
-  def dispose_of_grounds
-    driver.dispose_of_grounds
   end
 
   def dispense_tea_bag
