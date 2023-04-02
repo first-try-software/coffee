@@ -48,6 +48,7 @@ GEM
     simplecov_json_formatter (0.1.4)
 
 PLATFORMS
+  aarch64-darwin
   arm64-darwin-22
   x86_64-darwin-21
 
