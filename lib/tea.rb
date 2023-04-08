@@ -6,8 +6,8 @@ class Tea < Beverage
     heat_water
     dispense_tea_bag
     dispense_water
-    dispense_sweetener if options[:sweet]
-    dispense_cream if options[:creamy]
+    dispense_sweetener if sweet?
+    dispense_cream if creamy?
   end
 
   private

@@ -21,4 +21,16 @@ class Beverage
   def dispense_water
     driver.dispense_water
   end
+
+  def sweet?
+    options[:sweet]
+  end
+
+  def creamy?
+    options[:creamy]
+  end
+
+  def fluffy?
+    options[:fluffy]
+  end
 end

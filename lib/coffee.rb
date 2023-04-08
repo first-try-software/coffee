@@ -6,9 +6,9 @@ class Coffee < Beverage
     heat_water
     prepare_grounds
     dispense_water
-    dispense_sweetener if options[:sweet]
-    dispense_cream if options[:creamy]
-    dispense_whipped_cream if options[:fluffy]
+    dispense_sweetener if sweet?
+    dispense_cream if creamy?
+    dispense_whipped_cream if fluffy?
     dispose_of_grounds
   end
 

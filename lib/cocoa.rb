@@ -6,7 +6,7 @@ class Cocoa < Beverage
     heat_water
     dispense_cocoa_mix
     dispense_water
-    dispense_whipped_cream if options[:fluffy]
+    dispense_whipped_cream if fluffy?
   end
 
   private
