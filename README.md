@@ -1,4 +1,4 @@
-# The Coffee Machine
+# The Coffee Machine - Tropical.rb 2024 Edition
 
 This repository was first developed as a companion to our RubyConf Mini 2022 presentation entitled, "A Brewer's Guide to Filtering out Complexity and Churn". It was later extended to accompany our longer RailsConf 2023 talk of the same name.
 
